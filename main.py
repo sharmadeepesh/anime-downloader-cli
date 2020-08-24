@@ -102,6 +102,13 @@ def get_soup(anime):
 	get_details(soup)
 
 if __name__ == '__main__':
+	print(r'''
+ _   ,  , ___, , ,  _,     ,_   _, ,  ,,  , ,    _,  _     ,_   _,,_   
+'|\  |\ |' |  |\/| /_,     | \,/ \,| ,||\ | |   / \,'|\    | \,/_,|_)  
+ |-\ |'\| _|_,| `|'\_     _|_/'\_/ |/\||'\|'|__'\_/  |-\  _|_/'\_'| \  
+ '  `'  `'    '  `   `   '     '   '  `'  `   ' '    '  `'       `'  ` 
+                                                 By - u/sharmadeepesh/               
+                                                                       ''')
 	anime = input("\nEnter the name of the anime you want to download : ")
 	if len(list(anime))!=0:
 		pass
