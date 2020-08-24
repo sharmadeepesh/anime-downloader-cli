@@ -27,7 +27,7 @@ At least better than streaming sites with Ads.. Pftt...
 
 <hr>
 <h2>Big Brain Stuff</h2>
-<h6>The script uses the below-mentioned libraries.<h6>
+<h6>The script uses the below-mentioned libraries.</h6>
 <ul>
   <li><a href="https://pypi.org/project/requests/">Requests</a> = For sending HTTP requests with ease.</li>
   <li><a href="https://www.selenium.dev/">Selenium</a> = For browser automation.</li>
