@@ -6,7 +6,7 @@ At least better than streaming sites with Ads.. Pftt...
 <h1>Download Anime from your Terminal</h1>
 <h3>Easyyy af.<h4>
 
-<h5>Check out the steps below.<h5>
+<h5>Check out the steps below.</h5>
   <ol>
     <li>Download and install <a href="https://www.python.org/downloads/">Python</a>, ofc.</li>
     <li>Slap the Clone option.</li>
