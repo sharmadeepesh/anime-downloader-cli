@@ -52,7 +52,7 @@ def validate_choice_for_whole(choice, links):
 	pass_data(final_data)
 
 def get_choice(episodes, choice, links):
-	print("\n[NOTE] Enter the number of episodes you want to download Total Episode Count = {}\n\nYou can :\n1. Enter the episode number for 1 episodes (example - 10).\n2. Enter episode range for multiple episodes (example - 2-6).\n3. Hit Enter for downloading the whole show.\n".format(episodes))
+	print("\n[NOTE] Enter the number of episodes you want to download Total Episode Count = {}\n\nYou can :\n1. Enter the episode number for 1 episode (example - 10).\n2. Enter episode range for multiple episodes (example - 2-6).\n3. Hit Enter for downloading the whole show.\n".format(episodes))
 	resume_choice = input("[+] Enter your choice: ")
 	if len(resume_choice)==0:
 		validate_choice_for_whole(choice, links)
