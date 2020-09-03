@@ -4,7 +4,7 @@ import download
 from selenium.webdriver.chrome.options import Options
 import subprocess
 
-def get_link_from_xtreamcdn(url, name, path):
+def get_link(url, name, path):
 	options = Options()
 	options.add_argument("--headless")
 	options.add_argument("--log-level=3")
@@ -35,35 +35,3 @@ def get_link_from_xtreamcdn(url, name, path):
 		pass
 	driver.quit()
 	download.download(download_url, name, path)
-
-def get_link(url, name, path):
-	options = Options()
-	options.add_argument("--headless")
-	options.add_argument("--log-level=3")
-	driver = webdriver.Chrome('./chromedriver.exe', options=options)
-
-	driver.get(url)
-
-	print("\n\n[+] Wait. We're getting the episode for you....")
-	for i in range(0,5):
-		time.sleep(1)
-		
-	iframe = driver.find_elements_by_tag_name('iframe')
-	driver.switch_to.frame(iframe[1])
-	driver.find_elements_by_tag_name('div')[-1].click()
-	driver.switch_to.window(driver.window_handles[0])
-	driver.switch_to.frame(iframe[1])
-	driver.find_elements_by_xpath('//*[@id="myVideo"]/div[2]/div[12]/div[1]/div/div/div[2]/div')[0].click()
-	download_url = driver.find_elements_by_tag_name('video')[0].get_attribute('src')
-	
-	if download_url[0:4] == "blob":
-		print("\n[+] Hold Up. We are trying another server.")
-		driver.quit()
-		get_link_from_xtreamcdn(url, name, path)
-	elif download_url[0:5] == "https":
-		driver.quit()
-		download.download(download_url, name, path)
-	else:
-		driver.quit()
-		pass
-	
