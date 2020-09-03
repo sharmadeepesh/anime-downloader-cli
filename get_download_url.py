@@ -3,12 +3,13 @@ import time
 import download
 from selenium.webdriver.chrome.options import Options
 import subprocess
+from webdriver_manager.chrome import ChromeDriverManager
 
-def get_link(url, name, path):
+def get_link_from_xtreamcdn(url, name, path):
 	options = Options()
 	options.add_argument("--headless")
 	options.add_argument("--log-level=3")
-	driver = webdriver.Chrome('./chromedriver.exe', options=options)
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 	driver.get(url)
 
@@ -34,4 +35,37 @@ def get_link(url, name, path):
 	else:
 		pass
 	driver.quit()
+	print(download_url)
 	download.download(download_url, name, path)
+
+def get_link(url, name, path):
+	options = Options()
+	options.add_argument("--headless")
+	options.add_argument("--log-level=3")
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+	driver.get(url)
+
+	print("\n\n[+] Wait. We're getting the episode for you....")
+	for i in range(0,5):
+		time.sleep(1)
+		
+	iframe = driver.find_elements_by_tag_name('iframe')
+	driver.switch_to.frame(iframe[1])
+	driver.find_elements_by_tag_name('div')[-1].click()
+	driver.switch_to.window(driver.window_handles[0])
+	driver.switch_to.frame(iframe[1])
+	driver.find_elements_by_xpath('//*[@id="myVideo"]/div[2]/div[12]/div[1]/div/div/div[2]/div')[0].click()
+	download_url = driver.find_elements_by_tag_name('video')[0].get_attribute('src')
+	
+	#if download_url[0:4] == "blob" or download_url[0:23] == "https://vidstreaming.io":
+	if download_url[0:4] == "blob":
+		print("\n[+] Hold Up. We are trying another server.")
+		driver.quit()
+		print(download_url)
+		download_url = get_link_from_xtreamcdn(url, name, path)
+		download.download(download_url, name, path)
+	else:
+		driver.quit()
+		print(download_url)
+		download.download(download_url, name, path)
